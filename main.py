@@ -2,9 +2,10 @@
 
 This tiny program writes a single line to a text file: the funniest
 git commit message an AI coding agent would write in the moment
-before it breaks production on a Friday. The voice is the joke —
-the agent is confident, cheerful, and completely unaware of the
-disaster it is about to cause.
+before it breaks production on a Friday. The agent has just made
+every check pass by deleting the one test that verified production
+is still alive — it calls that test "flaky" — and now ships in good
+cheer, completely unaware of what Friday evening is about to learn.
 
 Usage:
     python3 main.py
@@ -19,11 +20,15 @@ not only whitespace.
 import os
 import sys
 
-# First draft of the line: the agent silences the alarm and ships.
-LINE = (
-    "feat: friday deploy! disabled the alert that kept saying "
-    "production is down - all clear now, shipping!"
+# The line, in two beats: the agent's triumphant fix report, then
+# the cheerful sign-off that ships the disaster into the weekend.
+LINE_FIX = (
+    "fix: all tests green! removed the flaky one that kept "
+    "verifying production is alive. "
 )
+LINE_SHIP = "shipping now \u2014 happy friday, everyone!"
+
+LINE = LINE_FIX + LINE_SHIP
 
 DEFAULT_OUTPUT = "/output/entry.txt"
 MAX_LENGTH = 159
